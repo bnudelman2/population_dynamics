@@ -1,5 +1,3 @@
-import processing.opengl.*;
-
 int stage = 0;
 int iterations = 5; //number of iterations in which the matrix is multiplied
 float[] next_population = new float[4];
@@ -88,6 +86,7 @@ void keyPressed(){
 
 void draw(){
   fill(#C9EDCA);
+  stroke(#C9EDCA);
   rect(0,0,800,800);
   randomSeed(stage * 255); //generate new random seed
   
