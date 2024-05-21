@@ -1,28 +1,41 @@
 int stage = 0;
-int iterations = 5; //number of iterations in which the matrix is multiplied
+int iterations = 50; //number of iterations in which the matrix is multiplied
 float[] next_population = new float[4];
 float[] F = new float[4];
 PMatrix3D H = new PMatrix3D();
 float[] rounded_population = new float[4];
+float[][] interact = new float[][]{{0, -0.01, -0.005, -0.002}, 
+                                   {0.04, 0, -0.025, -0.02 }, 
+                                   {0.008, 0.025, 0, 0    },
+                                   {0.01, 0.025, 0, 0     }};
 
 void setup() {
   background(#C9EDCA);
   size(1200,800);
   
   PMatrix3D interactions = new PMatrix3D();
-  interactions.set(0, -0.2, -0.1, -0.02, 0.1, 0, -0.4, -0.3, 0.08, 0.3, 0, 0, 0.01, 0.25, 0, 0);
+  interactions.set(interact[0][0], interact[0][1], interact[0][2], interact[0][3], interact[1][0], interact[1][1], interact[1][2], interact[1][3], interact[2][0], interact[2][1], interact[2][2], interact[2][3], interact[3][0], interact[3][1], interact[3][2], interact[3][3]);  
+  //interactions.set(0, -0.02, -0.01, -0.002, 0.04, 0, -0.025, -0.02, 0.008, 0.025, 0, 0, 0.001, 0.025, 0, 0);
 
   //interactions.print(); //for testing
-  float[] growth_death_rate = new float[]{0.8,0.4,0.3,0.2}; //temp, will set later
+  float[] growth_death_rate = new float[]{0.8,0.5,-0.2,-0.1}; //temp, will set later
 
-  float[] initial_population = new float[]{50, 25, 10, 5};
+  float[] initial_population = new float[]{75, 25, 10, 5};
 
   float dt = 0.02; //this keeps track of the timestep
 
   //float[] ones = new float[]{1 , 1 , 1 , 1};
 
-  H = interactions.get();
-  H.scale(dt);
+  H = new PMatrix3D();
+  for(int i = 0; i < 4; i++){
+    for (int j = 0; j < 4; j++){
+      interact[i][j] *= dt;
+    }
+  }
+  H.set(interact[0][0], interact[0][1], interact[0][2], interact[0][3], interact[1][0], interact[1][1], interact[1][2], interact[1][3], interact[2][0], interact[2][1], interact[2][2], interact[2][3], interact[3][0], interact[3][1], interact[3][2], interact[3][3]);
+  //H.print();
+  
+  //NOTE: SCALE DOES NOT WORK PROPERLY, MAYBE USE ARRAYS INSTEAD
 
   for (int i = 0; i < F.length; i++) {
     F[i] = growth_death_rate[i];
@@ -73,7 +86,7 @@ void updatePopulation(){
 
 void keyPressed(){
   if (key == ' '){
-    if (stage != 5){
+    if (stage != iterations){
       //print(stage + 1);
       stage++; //stages go from zero to n
       updatePopulation();
