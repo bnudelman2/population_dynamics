@@ -1,13 +1,13 @@
 int stage = 0;
-int iterations = 50; //number of iterations in which the matrix is multiplied
+int iterations = 100; //number of iterations in which the matrix is multiplied
 float[] next_population = new float[4];
 float[] F = new float[4];
 PMatrix3D H = new PMatrix3D();
 float[] rounded_population = new float[4];
-float[][] interact = new float[][]{{0, -0.01, -0.005, -0.002}, 
-                                   {0.04, 0, -0.025, -0.02 }, 
-                                   {0.008, 0.025, 0, 0    },
-                                   {0.01, 0.025, 0, 0     }};
+float[][] interact = new float[][]{{0, -0.04, -0.02, -0.01}, 
+                                   {0.02, 0, -0.02, -0.02 }, 
+                                   {0.01, 0.015, 0, 0    },
+                                   {0.001, 0.015, 0, 0     }};
 
 void setup() {
   background(#C9EDCA);
@@ -18,7 +18,7 @@ void setup() {
   //interactions.set(0, -0.02, -0.01, -0.002, 0.04, 0, -0.025, -0.02, 0.008, 0.025, 0, 0, 0.001, 0.025, 0, 0);
 
   //interactions.print(); //for testing
-  float[] growth_death_rate = new float[]{0.8,0.5,-0.2,-0.1}; //temp, will set later
+  float[] growth_death_rate = new float[]{0.7,0.2,-0.2,-0.1}; //temp, will set later
 
   float[] initial_population = new float[]{75, 25, 10, 5};
 
