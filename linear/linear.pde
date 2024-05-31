@@ -18,7 +18,7 @@ void setup() {
   //interactions.set(0, -0.02, -0.01, -0.002, 0.04, 0, -0.025, -0.02, 0.008, 0.025, 0, 0, 0.001, 0.025, 0, 0);
 
   //interactions.print(); //for testing
-  float[] growth_death_rate = new float[]{0.7,0.2,-0.2,-0.1}; //temp, will set later
+  float[] growth_death_rate = new float[]{0.7,0.2,-0.2,-0.1}; 
 
   float[] initial_population = new float[]{75, 25, 10, 5};
 
@@ -34,8 +34,7 @@ void setup() {
   }
   H.set(interact[0][0], interact[0][1], interact[0][2], interact[0][3], interact[1][0], interact[1][1], interact[1][2], interact[1][3], interact[2][0], interact[2][1], interact[2][2], interact[2][3], interact[3][0], interact[3][1], interact[3][2], interact[3][3]);
   //H.print();
-  
-  //NOTE: SCALE DOES NOT WORK PROPERLY, MAYBE USE ARRAYS INSTEAD
+
 
   for (int i = 0; i < F.length; i++) {
     F[i] = growth_death_rate[i];
